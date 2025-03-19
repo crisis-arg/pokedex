@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var pokeapi =
       "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json";
 
-  late List pokedex;
+  List pokedex = [];
 
   @override
   void initState() {
@@ -28,37 +28,41 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.amber,
-      body: Column(
-        children: [
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.4,
+      body:
+          pokedex.isEmpty
+              ? Center(child: CircularProgressIndicator())
+              : Column(
+                children: [
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.4,
+                      ),
+                      itemCount: pokedex.length,
+                      itemBuilder: (context, index) {
+                        return Card(child: Text(pokedex[index]['name']));
+                      },
+                    ),
+                  ),
+                ],
               ),
-              itemCount: pokedex.length,
-              itemBuilder: (context, index) {
-                return Card();
-              },
-            ),
-          ),
-        ],
-      ),
     );
   }
 
-  void fetchpokemondata() {
+  void fetchpokemondata() async {
     var url = Uri.https(
       "raw.githubusercontent.com",
       "/Biuni/PokemonGO-Pokedex/master/pokedex.json",
     );
 
-    http.get(url).then((onValue) {
+    await http.get(url).then((onValue) {
       if (onValue.statusCode == 200) {
         var decodedjsondata = jsonDecode(onValue.body);
         // print(decodedjsondata);
         pokedex = decodedjsondata['pokemon'];
         print(pokedex[0]['name']);
+        setState(() {});
       }
     });
   }
