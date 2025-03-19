@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.white,
       body:
           pokedex.isEmpty
               ? Center(child: CircularProgressIndicator())
@@ -41,7 +42,64 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       itemCount: pokedex.length,
                       itemBuilder: (context, index) {
-                        return Card(child: Text(pokedex[index]['name']));
+                        var type = pokedex[index]['type'][0];
+                        return Card(
+                          color: Colors.green,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                bottom: -10,
+                                right: -10,
+                                child: Image.asset(
+                                  'images/pokeball.png',
+                                  height: 100,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                              Positioned(
+                                top: 10,
+                                left: 5,
+                                child: Text(
+                                  pokedex[index]['name'],
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              Positioned(
+                                top: 30,
+                                left: 5,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8),
+                                    ),
+                                    color: Colors.black26,
+                                  ),
+
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 8,
+                                      right: 8,
+                                      top: 4,
+                                      bottom: 4,
+                                    ),
+                                    child: Text(
+                                      type.toString(),
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 3,
+                                right: 5,
+                                child: CachedNetworkImage(
+                                  imageUrl: (pokedex[index]['img'] as String)
+                                      .replaceFirst("http", "https"),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
                       },
                     ),
                   ),
