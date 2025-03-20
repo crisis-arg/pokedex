@@ -61,11 +61,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 left: 5,
                                 child: Text(
                                   pokedex[index]['name'],
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                               Positioned(
-                                top: 30,
+                                top: 35,
                                 left: 5,
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -95,6 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: CachedNetworkImage(
                                   imageUrl: (pokedex[index]['img'] as String)
                                       .replaceFirst("http", "https"),
+                                  height: 100,
+                                  fit: BoxFit.fitHeight,
                                 ),
                               ),
                             ],
