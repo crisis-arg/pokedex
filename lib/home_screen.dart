@@ -98,6 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ? Colors.brown
                                     : type == 'Dragon'
                                     ? Colors.blue
+                                    : type == 'Ghost'
+                                    ? Colors.black45
                                     : Colors.pinkAccent,
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
