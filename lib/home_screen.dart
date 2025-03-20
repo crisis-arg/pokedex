@@ -73,7 +73,30 @@ class _HomeScreenState extends State<HomeScreen> {
                           var type = pokedex[index]['type'][0];
                           return Container(
                             decoration: BoxDecoration(
-                              color: Colors.green,
+                              color:
+                                  type == 'Grass'
+                                      ? Colors.greenAccent
+                                      : type == 'Fire'
+                                      ? Colors.redAccent
+                                      : type == 'Bug'
+                                      ? Colors.green
+                                      : type == 'Electric'
+                                      ? const Color.fromARGB(255, 204, 188, 41)
+                                      : type == 'Poison'
+                                      ? Colors.deepPurpleAccent
+                                      : type == 'Water'
+                                      ? Colors.lightBlueAccent
+                                      : type == 'Ground'
+                                      ? const Color.fromARGB(255, 72, 36, 23)
+                                      : type == 'Fighting'
+                                      ? Colors.orangeAccent
+                                      : type == 'Psychic'
+                                      ? const Color.fromARGB(255, 210, 44, 100)
+                                      : type == 'Rock'
+                                      ? Colors.brown
+                                      : type == 'Dragon'
+                                      ? Colors.blue
+                                      : Colors.pinkAccent,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
                               ),
