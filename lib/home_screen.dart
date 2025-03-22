@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pokedex/detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -73,99 +74,111 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: pokedex.length,
                       itemBuilder: (context, index) {
                         var type = pokedex[index]['type'][0];
-                        return Container(
-                          decoration: BoxDecoration(
-                            color:
-                                type == 'Grass'
-                                    ? Colors.greenAccent
-                                    : type == 'Fire'
-                                    ? Colors.redAccent
-                                    : type == 'Bug'
-                                    ? Colors.green
-                                    : type == 'Electric'
-                                    ? const Color.fromARGB(255, 204, 188, 41)
-                                    : type == 'Poison'
-                                    ? Colors.deepPurpleAccent
-                                    : type == 'Water'
-                                    ? Colors.lightBlueAccent
-                                    : type == 'Ground'
-                                    ? const Color.fromARGB(255, 72, 36, 23)
-                                    : type == 'Fighting'
-                                    ? Colors.orangeAccent
-                                    : type == 'Psychic'
-                                    ? const Color.fromARGB(255, 210, 44, 100)
-                                    : type == 'Rock'
-                                    ? Colors.brown
-                                    : type == 'Dragon'
-                                    ? Colors.blue
-                                    : type == 'Ghost'
-                                    ? Colors.black45
-                                    : Colors.pinkAccent,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                bottom: -10,
-                                right: -10,
-                                child: Image.asset(
-                                  'images/pokeball.png',
-                                  height: height * 0.13,
-                                  fit: BoxFit.fitHeight,
-                                ),
+                        return InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color:
+                                  type == 'Grass'
+                                      ? const Color.fromARGB(255, 73, 191, 134)
+                                      : type == 'Fire'
+                                      ? Colors.redAccent
+                                      : type == 'Bug'
+                                      ? Colors.green
+                                      : type == 'Electric'
+                                      ? const Color.fromARGB(255, 204, 188, 41)
+                                      : type == 'Poison'
+                                      ? Colors.deepPurpleAccent
+                                      : type == 'Water'
+                                      ? Colors.lightBlueAccent
+                                      : type == 'Ground'
+                                      ? const Color.fromARGB(255, 72, 36, 23)
+                                      : type == 'Fighting'
+                                      ? Colors.orangeAccent
+                                      : type == 'Psychic'
+                                      ? const Color.fromARGB(255, 210, 44, 100)
+                                      : type == 'Rock'
+                                      ? Colors.brown
+                                      : type == 'Dragon'
+                                      ? Colors.blue
+                                      : type == 'Ghost'
+                                      ? Colors.black45
+                                      : Colors.pinkAccent,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
                               ),
-                              Positioned(
-                                bottom: 3,
-                                right: 5,
-                                child: CachedNetworkImage(
-                                  imageUrl: (pokedex[index]['img'] as String)
-                                      .replaceFirst("http", "https"),
-                                  height: height * 0.1,
-                                  fit: BoxFit.fitHeight,
-                                ),
-                              ),
-                              Positioned(
-                                top: 10,
-                                left: 5,
-                                child: Text(
-                                  pokedex[index]['name'],
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  bottom: -10,
+                                  right: -10,
+                                  child: Image.asset(
+                                    'images/pokeball.png',
+                                    height: height * 0.13,
+                                    fit: BoxFit.fitHeight,
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 35,
-                                left: 5,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8),
+                                Positioned(
+                                  bottom: 3,
+                                  right: 5,
+                                  child: CachedNetworkImage(
+                                    imageUrl: (pokedex[index]['img'] as String)
+                                        .replaceFirst("http", "https"),
+                                    height: height * 0.1,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 10,
+                                  left: 5,
+                                  child: Text(
+                                    pokedex[index]['name'],
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
                                     ),
-                                    color: Colors.black26,
                                   ),
+                                ),
+                                Positioned(
+                                  top: 35,
+                                  left: 5,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(8),
+                                      ),
+                                      color: Colors.black26,
+                                    ),
 
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 8,
-                                      right: 8,
-                                      top: 4,
-                                      bottom: 4,
-                                    ),
-                                    child: Text(
-                                      type.toString(),
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 8,
+                                        right: 8,
+                                        top: 4,
+                                        bottom: 4,
+                                      ),
+                                      child: Text(
+                                        type.toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PokemonDetailScreen(),
+                              ),
+                            );
+                          },
                         );
                       },
                     ),
