@@ -64,35 +64,33 @@ class _PokemonDetailScreenState extends State<PokemonDetailScreen> {
                     ),
                   ),
                 ),
+                if (widget.pokemonDetail['type'].length > 1) SizedBox(width: 5),
+                if (widget.pokemonDetail['type'].length > 1)
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 8,
+                        right: 8,
+                        top: 4,
+                        bottom: 4,
+                      ),
+                      child: Text(
+                        widget.pokemonDetail['type'][1],
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
-          if (widget.pokemonDetail['type'].length > 1)
-            Positioned(
-              top: height * 0.15,
-              left: width * 0.2,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black26,
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 8,
-                    right: 8,
-                    top: 4,
-                    bottom: 4,
-                  ),
-                  child: Text(
-                    widget.pokemonDetail['type'][1],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+
           Positioned(
             top: height * 0.16,
             right: -10,
