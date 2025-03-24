@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:pokedex/home_screen.dart';
 
 void main() {
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(const Pokedex());
 }
 
