@@ -121,11 +121,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Positioned(
                                   bottom: 3,
                                   right: 5,
-                                  child: CachedNetworkImage(
-                                    imageUrl: (pokedex[index]['img'] as String)
-                                        .replaceFirst("http", "https"),
-                                    height: height * 0.1,
-                                    fit: BoxFit.fitHeight,
+                                  child: Hero(
+                                    tag: index,
+                                    child: CachedNetworkImage(
+                                      imageUrl: (pokedex[index]['img']
+                                              as String)
+                                          .replaceFirst("http", "https"),
+                                      height: height * 0.1,
+                                      fit: BoxFit.fitHeight,
+                                    ),
                                   ),
                                 ),
                                 Positioned(
@@ -175,35 +179,57 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PokemonDetailScreen(
-                                  pokemonDetail: pokedex[index],
-                                  clr:  type == 'Grass'
-                                      ? const Color.fromARGB(255, 73, 191, 134)
-                                      : type == 'Fire'
-                                      ? Colors.redAccent
-                                      : type == 'Bug'
-                                      ? Colors.green
-                                      : type == 'Electric'
-                                      ? const Color.fromARGB(255, 204, 188, 41)
-                                      : type == 'Poison'
-                                      ? Colors.deepPurpleAccent
-                                      : type == 'Water'
-                                      ? Colors.lightBlueAccent
-                                      : type == 'Ground'
-                                      ? const Color.fromARGB(255, 72, 36, 23)
-                                      : type == 'Fighting'
-                                      ? Colors.orangeAccent
-                                      : type == 'Psychic'
-                                      ? const Color.fromARGB(255, 210, 44, 100)
-                                      : type == 'Rock'
-                                      ? Colors.brown
-                                      : type == 'Dragon'
-                                      ? Colors.blue
-                                      : type == 'Ghost'
-                                      ? Colors.black45
-                                      : Colors.pinkAccent,
-                                  heroTag: index,
-                                ),
+                                builder:
+                                    (context) => PokemonDetailScreen(
+                                      pokemonDetail: pokedex[index],
+                                      clr:
+                                          type == 'Grass'
+                                              ? const Color.fromARGB(
+                                                255,
+                                                73,
+                                                191,
+                                                134,
+                                              )
+                                              : type == 'Fire'
+                                              ? Colors.redAccent
+                                              : type == 'Bug'
+                                              ? Colors.green
+                                              : type == 'Electric'
+                                              ? const Color.fromARGB(
+                                                255,
+                                                204,
+                                                188,
+                                                41,
+                                              )
+                                              : type == 'Poison'
+                                              ? Colors.deepPurpleAccent
+                                              : type == 'Water'
+                                              ? Colors.lightBlueAccent
+                                              : type == 'Ground'
+                                              ? const Color.fromARGB(
+                                                255,
+                                                72,
+                                                36,
+                                                23,
+                                              )
+                                              : type == 'Fighting'
+                                              ? Colors.orangeAccent
+                                              : type == 'Psychic'
+                                              ? const Color.fromARGB(
+                                                255,
+                                                210,
+                                                44,
+                                                100,
+                                              )
+                                              : type == 'Rock'
+                                              ? Colors.brown
+                                              : type == 'Dragon'
+                                              ? Colors.blue
+                                              : type == 'Ghost'
+                                              ? Colors.black45
+                                              : Colors.pinkAccent,
+                                      heroTag: index,
+                                    ),
                               ),
                             );
                           },

@@ -380,10 +380,13 @@ class _PokemonDetailScreenState extends State<PokemonDetailScreen> {
           Positioned(
             top: height * 0.2,
             left: width * 0.2,
-            child: CachedNetworkImage(
-              imageUrl: widget.pokemonDetail['img'],
-              height: height * 0.3,
-              fit: BoxFit.fitHeight,
+            child: Hero(
+              tag: widget.heroTag,
+              child: CachedNetworkImage(
+                imageUrl: widget.pokemonDetail['img'],
+                height: height * 0.3,
+                fit: BoxFit.fitHeight,
+              ),
             ),
           ),
         ],
